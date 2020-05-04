@@ -1,0 +1,110 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="f-btn-container">
+  <a href="{{ url_for('iwanna.new_item') }}" class="f-btn-icon-container d-flex align-content-center justify-content-center shadow-sm">
+      <ion-icon name="bulb" size="large" class="text-white align-self-center"></ion-icon>
+  </a>
+</div>
+
+<div class="container my-5">
+  {% if current_user.is_admin %}
+  <h2><a class="btn btn-outline-secondary btn-sm" href="{{ url_for('admin.update_page', page_id=page.id) }}"> Update </a></h2>
+  <h2><a class="btn btn-outline-secondary btn-sm" href="{{ url_for('admin.delete_page', page_id=page.id) }}"> delete </a></h2>
+  {% endif %}
+
+  {% if cover %}
+  <!-- COVER IMAGE -->
+  <div id="header-bg-img" 
+  class="jumbotron p-10 p-md-10 text-white rounded bg-dark mask rgba-black-strong"
+     style="background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url('{{ url_for('static', filename='page_pics/' + cover.image_file)}}')  center top fixed;">
+
+      <div class="col-md-4 px-0">
+          <div class='content-markdown'>{{cover.content}}</div>
+          <p>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+          </p>
+          {% if current_user.is_admin %}
+          <h2><a class="btn btn-outline-secondary btn-sm" href="{{ url_for('admin.update_cover', cover_id=cover.id) }}"> Update </a></h2>
+          <h2><a class="btn btn-outline-secondary btn-sm" href="{{ url_for('admin.delete_cover', cover_id=cover.id) }}"> delete </a></h2>
+          {% endif %}
+      </div>
+  </div>
+  {% endif %}
+    <!-- FEATURES -->
+    <section class="row no-gutters">
+      <div class="col-12">
+          {% if items[0] %}
+          <h2 class="text-center my-5">ISeeya</h2>
+          {% endif %}
+      </div>
+        {% for item in items %}
+          <a href="{{ url_for('pages.page', page_name=item.link) }}">
+          <div class="d-flex align-content-start flex-wrap flex-md-nowrap justify-content-center mb-5">
+            {% if update() %}
+            <div class="col-md-5"> 
+            {% else %}
+            <div class="col-md-5 order-md-2">
+            {% endif %}
+              <img src="{{ url_for('static', filename='page_pics/' + item.image_file)}}" alt="" class="img-fluid rounded shadow-sm">
+            </div>
+            <div class="col-md-7 order-md- mt-3">
+              <div class='content-markdown'>{{item.content}}</div>
+              {% if current_user.is_admin %}
+              <h2><a class="btn btn-outline-secondary btn-sm" href="{{ url_for('admin.update_item', item_id=item.id) }}"> Update </a></h2>
+              <h2><a class="btn btn-outline-secondary btn-sm" href="{{ url_for('admin.delete_item', item_id=item.id) }}"> delete </a></h2>
+              {% endif %}
+            </div>
+          </div> 
+        </a>   
+    {% endfor %}
+  </section>
+  <section>
+    {% if sub_items[0] %}
+    <h3 class="text-center my-5">Capabilities</h3>
+    {% endif %}
+    <div class="d-flex justify-content-around flex-wrap">
+
+    {% for sub_item in sub_items %}
+      <a href="{{ url_for('pages.page', page_name=sub_item.link) }}">
+        <div class="card mb-3" style="width: 18rem;">
+          <img src="{{ url_for('static', filename='page_pics/' + sub_item.image_file)}}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <div class='content-markdown'>{{sub_item.content}}</div>
+            {% if current_user.is_admin %}
+            <h2><a class="btn btn-outline-secondary btn-sm" href="{{ url_for('admin.update_subitem', subitem_id=sub_item.id) }}"> Update </a></h2>
+            <h2><a class="btn btn-outline-secondary btn-sm" href="{{ url_for('admin.delete_subitem', subitem_id=sub_item.id) }}"> delete </a></h2>
+            {% endif %}
+          </div>
+
+      </div>
+    </a>
+      {% endfor %}
+</div>
+</section>
+  {%if content %}
+
+  <div class='content-markdown'>{{content.content}}</div>
+    {% if current_user.is_admin %}
+      <h2><a class="btn btn-outline-secondary btn-sm" href="{{ url_for('admin.update_content', content_id=content.id) }}"> Update </a></h2>
+      <h2><a class="btn btn-outline-secondary btn-sm" href="{{ url_for('admin.delete_content', content_id=content.id) }}"> delete </a></h2>
+    {% endif %}
+  {% endif %}
+
+
+{% if page.name == "home" %}
+<footer class="bg-light">
+  <div class="container py-5">
+    <a href="https://www.freepik.com/free-photos-vectors/business">Business vector created by pikisuperstar - www.freepik.com</a>
+    <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+    <div>Icons made by <a href="https://www.flaticon.com/authors/eucalyp" title="Eucalyp">Eucalyp</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+
+  </div>
+
+{% endif %}
+{% endblock content %}

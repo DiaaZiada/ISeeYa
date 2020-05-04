@@ -1,0 +1,6 @@
+/media/Tesla/Bug/FlaskApp/iseeya/iseeya/ai/gender/build/CMakeFiles/rebuild_cache.dir
+/media/Tesla/Bug/FlaskApp/iseeya/iseeya/ai/gender/build/CMakeFiles/edit_cache.dir
+/media/Tesla/Bug/FlaskApp/iseeya/iseeya/ai/gender/build/CMakeFiles/gender.dir
+/media/Tesla/Bug/FlaskApp/iseeya/iseeya/ai/gender/build/module/CMakeFiles/rebuild_cache.dir
+/media/Tesla/Bug/FlaskApp/iseeya/iseeya/ai/gender/build/module/CMakeFiles/module.dir
+/media/Tesla/Bug/FlaskApp/iseeya/iseeya/ai/gender/build/module/CMakeFiles/edit_cache.dir

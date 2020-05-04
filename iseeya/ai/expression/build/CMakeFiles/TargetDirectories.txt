@@ -1,0 +1,6 @@
+/media/Tesla/Bug/FlaskApp/iseeya/iseeya/ai/expression/build/CMakeFiles/edit_cache.dir
+/media/Tesla/Bug/FlaskApp/iseeya/iseeya/ai/expression/build/CMakeFiles/rebuild_cache.dir
+/media/Tesla/Bug/FlaskApp/iseeya/iseeya/ai/expression/build/CMakeFiles/expression.dir
+/media/Tesla/Bug/FlaskApp/iseeya/iseeya/ai/expression/build/module/CMakeFiles/rebuild_cache.dir
+/media/Tesla/Bug/FlaskApp/iseeya/iseeya/ai/expression/build/module/CMakeFiles/module.dir
+/media/Tesla/Bug/FlaskApp/iseeya/iseeya/ai/expression/build/module/CMakeFiles/edit_cache.dir

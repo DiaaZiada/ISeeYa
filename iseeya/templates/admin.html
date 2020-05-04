@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container my-5">
+
+ number of users : {{ n_users}}
+    {% for wish in wishs %}
+    <article class="media content-section">
+    <div class="media-body">
+        <div class="article-metadata">
+        <h2><a class="article-title">{{wish.type}}</a></h2>
+        <a class="mr-2" >{{ user(wish.user_id) }}</a>
+        <p class="article-content">{{ wish.content }}</p>
+        </div>
+        
+    </div>
+    </article>
+    {% endfor %}
+</div>
+
+{% endblock content %}

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>ISeeYa</title>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul class=flashes>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    {% endwith %}
+</head>
+
+<body>
+    
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark px-5">
+        <a class="navbar-brand ml-3" href="{{ url_for('main.home') }}">ISeeYa</a>
+        {% if current_user.is_admin %}
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ">
+                <a class="nav-link" href="{{ url_for('admin.new_page')}}">New Page <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="{{ url_for('admin.new_item')}}">New Item <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="{{ url_for('admin.new_subitem')}}">New SubItem <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="{{ url_for('admin.new_cover')}}">New Cover <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="{{ url_for('admin.new_content')}}">New Content <span class="sr-only">(current)</span></a>
+            </ul>
+        </div>
+        {% endif %}
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ url_for('main.home') }}">Home </a>
+                </li>
+                {% if current_user.is_authenticated %}
+                
+                        {% if current_user.is_admin %}
+                        <a class="nav-link nav-item active" href="{{ url_for('admin.admin_page') }}">Admin</a>
+                        {% endif %}
+                        <a class="nav-link nav-item active" href="{{ url_for('users.account') }}">Account</a>
+                        <a class="nav-link nav-item active" href="{{ url_for('users.token') }}">Token</a>
+                        <a class="nav-link" href="{{ url_for('users.logout') }}">Logout</a>
+                    </div>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('users.login') }}">Login</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="{{ url_for('users.signup') }}">Signup</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    <!-- NAVBAR -->
+
+
+    {% block content %}
+    {% endblock content%}
+   
+
+
+
+
+    <script
+    src="https://code.jquery.com/jquery-1.12.4.min.js"
+    integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+    crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.6/marked.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $(".content-markdown").each(function(){
+            var content = $(this).text()
+            console.log(content)
+            var markedContent = marked(content)
+            console.log(markedContent)
+            $(this).html(markedContent)
+        })
+    })
+    </script>
+
+<script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>

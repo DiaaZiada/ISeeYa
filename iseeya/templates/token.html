@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container my-5">
+  <div class="media">
+        <div class="media-body">
+        </div>
+      </div>
+        <form method="POST" action="" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                {%if token%}
+                <h1>Token</h1>
+                <textarea id="token" rows="4" cols="50">{{token}}</textarea>
+                {%else%}
+                <h1>Request for Token</h1>
+                {{ form.submit(class="btn btn-outline-info") }}
+                {%endif%}
+            </div>
+        </form>
+    </div>
+{% endblock content %}
