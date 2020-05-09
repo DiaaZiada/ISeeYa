@@ -37,14 +37,14 @@ If you did not make this request then simply ignore this email and no changes wi
 '''
     mail.send(msg)
 
-def send_activation_email(user):
+def send_activation_email(user, password):
     token = user.get_reset_token()
-    msg = Message('Email Activation',
+    msg = Message('Get Password',
                   sender='noreply@demo.com',
                   recipients=[user.email])
-    msg.body = f'''To activate your email, visit the following link:
-{url_for('users.activate_email', token=token, _external=True)}
-
+    msg.body = f'''Your Password is {password} 
+To reset your password, visit the following link:
+{url_for('users.reset_token', token=token, _external=True)}
 If you did not make this request then simply ignore this email and no changes will be made.
 '''
     mail.send(msg)

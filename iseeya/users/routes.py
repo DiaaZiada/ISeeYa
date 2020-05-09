@@ -1,3 +1,4 @@
+from secrets import token_hex
 from flask import render_template, url_for, flash, redirect, request, Blueprint
 from flask_login import login_user, current_user, logout_user, login_required
 from iseeya import db, bcrypt
@@ -15,11 +16,14 @@ def signup():
         return redirect(url_for('main.home'))
     form = RegistrationForm()
     if form.validate_on_submit():
-        user = User(username=form.username.data, email=form.email.data, password="not active", is_admin=False)
+        password = token_hex(8)
+        hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
+
+        user = User(username=form.username.data, email=form.email.data, password=hashed_password, is_admin=False)
         db.session.add(user)
         db.session.commit()
-        send_activation_email(user)
-        flash('An email has been sent with instructions to activate your email.', 'info')
+        send_activation_email(user, password)
+        flash('An email has been sent with default password.', 'info')
         return redirect(url_for('main.home'))
     return render_template('signup.html', title='Register', form=form)
 
@@ -30,7 +34,7 @@ def login():
         return redirect(url_for('pages.page', page_name='home'))
     form = LoginForm()
     if form.validate_on_submit():
-        user = User.query.filter_by(email=form.email.data).first()
+        user = User.query.filter((User.email == form.email.data) | (User.username == form.email.data)).first()
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user, remember=form.remember.data)
             next_page = request.args.get('next')
@@ -108,7 +112,6 @@ def activate_email(token):
     user = User.verify_reset_token(token)
 
     if user is None:
-        print("That is an invalid or expired token")
         flash('That is an invalid or expired token', 'warning')
         return redirect(url_for('main.home'))
     form = ActiveEmailForm()
