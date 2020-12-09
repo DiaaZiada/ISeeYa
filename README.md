@@ -2,32 +2,36 @@
 
 **_Machine learning APIs for developers_**
 
-Iseeya brings machine learning expertise to any kind of developers in a powerful and easy-to-use package that interacts with Iseeya's API in realtime performance
-# Install & Run
-```
-$pip install -r requirements.txt
-$python run.py
+Iseeya brings face detection to developers in an easy-to-use package that interacts with Iseeya's API in real-time performance.
+
+## Install & Run
+```bash
+$ pip install -r requirements.txt
+$ python run.py
 ```
 
-# How to ISeeya
+# How to use
+
+### Steps
+Create an account
+Grab your token
+Start using ISeeYa
+
+## Creating an account
+You need to have an account to start using ISeeYa. You will have to add your name and email and the password will be sent to your email.
 
 ## Token
-
-First, you have to get your token to be able to access all ISeeya services. You can easily get your token by clicking on the  **"Token"** button near to el Account button on the navigation bar after login. This will direct you to token page when you reach it press to  **"Generate Token"** button and your token will appears, copy the token to use it in your request
+You have to get your token to be able to access all ISeeya features. You can access your token by clicking on the  **"Token"** link in the navigation bar (You have to be logged in to see this link). This will direct you to the token page when you reach it press to  **"Generate Token"** button and your token will be generated.
 
 ## Packages
-
-we had prepared a python Package that handles all requests for you you can download it from  [here](https://drive.google.com/file/d/12pYm0glhgC3ga1TjL3hGjlC9LLeo85IY/view?usp=sharing).
+We have prepared a python package that handles all requests for you, you can download it from  [google drive](https://drive.google.com/file/d/12pYm0glhgC3ga1TjL3hGjlC9LLeo85IY/view?usp=sharing).
 
 # Face Detection
-
-With ISeeya face detection API, you can detect faces in an image.
-
-by sending an image and return the dimensions of boxes that round the faces in the image
+With ISeeya face detection API, you can detect faces in an image by sending an image to the server and the return is the dimensions of boxes that round the faces in the image.
 
 ## How to get face detection
 
-You only need to add  **"face"** keyword into the list of detectors
+You need to add the `"face"` keyword into the list of `detectors`.
 
 **Example**
 ```py
@@ -35,23 +39,17 @@ requset_for = {
     "detectors":["face"]
 }
 ```
+You can access faces result by accessing the key `faces` from the result dictionary `faces = results['faces']`.
 
-and the result will be in the return result dictionary you can simply access by the key  **"faces"**
-
-faces = results['faces']
-
-faces: is a list of NumPy arrays every array contains (startX, startY, endX, endY) of the box that contains the face
+`faces`: is the list of NumPy arrays every array contains (startX, startY, endX, endY) of the box that contains the face.
 
 
 # Gender Detection
-
-With ISeeya face detection API, you can detect the gender of the person using only his/her image or image that contains more than one person.
-
-by sending an image and return list evey element contains string of his/her gender (Male/Female) with the confidence in percentage of that decision
+With ISeeya face detection API, you can detect the gender of the person using only his/her image or image that contains more than one person by sending an image to the server. The result is a list of evey face containing a string of his/her gender (Male/Female) with a percentage of the accuracy of that decision.
 
 ## How to get gender detection
 
-You only need to add  **"gender"** keyword into the list of from_face
+You need to add the `"gender"` keyword into the list of `from_face`.
 
 **Example**
 ```py
@@ -59,20 +57,15 @@ requset_for = {
     "from_face":["gender"]
 }
 ```
+You can access gender results by accessing the key `gender` from the result dictionary `genders = results['gender']`.
 
-and the result will be in the return result dictionary you can simply access by the key  **"gender"**
-
-genders = results['gender']
-
-gender: is a list of lists every list contains two elements the first element is a string of ("Male", "Female"), the second element is an integer of the percentage of confidence of that decision
+`gender`: is a list of lists every list contains two elements the first element is a string of ("Male", "Female"), the second element is an integer of the percentage of confidence of that decision
 
 # Expression Detection
 
-With ISeeya face detection API, you can detect the Expressions of the person using only his image or image that contains more than one person.
+With ISeeya face detection API, you can detect the Expressions of the person using only his image or image that contains more than one person by sending an image to the server. The return is a list of every element containing a string of the expression with a percentage of the accuracy of that decision.
 
-by sending an image and return list evey element contains string of the expersion with the confidence in percentage of that decision
-
-## Expersions
+## Expressions
 
 -   'ANGER'
 -   'DISGUST'
@@ -83,8 +76,7 @@ by sending an image and return list evey element contains string of the expersio
 -   'SURPRISE'
 
 ## How to get expression detection
-
-You only need to add  **"expression"** keyword into the list of from_face
+You need to add the `"expression"` keyword into the list of `from_face`.
 
 **Example**
 ```py
@@ -92,18 +84,13 @@ requset_for = {
     "from_face":["expression"]
 }
 ```
+You can access expression results by accessing the key `expression` from the result dictionary `expressions = results['expression']`.
 
-and the result will be in the return result dictionary you can simply access by the key  **"expression"**
-
-expressions = results['expression']
-
-expressions: is a list of lists every list contains two elements the first element is a string of the expression, the second element is an integer of the percentage of confidence of that decision
+`expressions`: is a list of lists every list contains two elements the first element is a string of the expression, the second element is an integer of the percentage of confidence of that decision
 
 # Collection Detection
 
-With ISeeya face detection API, you can group of information of a person using only his image or image that contains more than one person.
-
-by sending an image and return list every element contains a list of information that detected from the face with the confidence in the percentage of that decision
+With ISeeya face detection API, you can group the information of a person using his image or image that contains more than one person by sending an image to the server. The result is a list of every element containing a list of information detected from the face with a percentage of the accuracy of that decision.
 
 ## Collection
 
@@ -143,8 +130,7 @@ Makeup:
 -   'PARTIAL'
 
 ## How to get collection detection
-
-You only need to add  **"multiple"** keyword into the list of from_face
+You need to add the `"multiple"` keyword into the list of `from_face`.
 
 **Example**
 ```py
@@ -152,26 +138,21 @@ requset_for = {
     "from_face":["multiple"]
 }
 ```
+You can access the multiple results by accessing the key `multiple` from the result dictionary `multiple = results[multiple]`.
 
-and the result will be in the return result dictionary you can simply access by the key  **"multiple"**
-
-multiple = results['multiple']
-
-multiple: is a dictionary its value is a list of lists every list contains two elements the first element is a string of a collection model detection, the second element is an integer of the percentage of confidence of that decision
+`multiple`: is a dictionary its value is a list of lists every list contains two elements the first element is a string of a collection model detection, the second element is an integer of the percentage of confidence of that decision
 
 **_Example_**
 
-retsult["illumination"][0]
+```py
+illumination = retsult["illumination"][0]
+pose = retsult["pose"][0]
+occlusion = retsult["occlusion"][0]
+age = retsult["age"][0]
+makeup = retsult["makeup"][0]
+```
 
-retsult["pose"][0]
-
-retsult["occlusion"][0]
-
-retsult["age"][0]
-
-retsult["makeup"][0]
-
-## FULL Example
+## Full example
 
 ```py
 import socketio
@@ -331,12 +312,14 @@ while True:
 cam.release()
 cv2.destroyAllWindows()
 ```
-dowload streamer module from [here](https://drive.google.com/file/d/12pYm0glhgC3ga1TjL3hGjlC9LLeo85IY/view?usp=sharing).
+download streamer module from [here](https://drive.google.com/file/d/12pYm0glhgC3ga1TjL3hGjlC9LLeo85IY/view?usp=sharing).
 
 ### Dowload Streamer & Install Requirements
 dowload streamer module from [here](https://drive.google.com/file/d/12pYm0glhgC3ga1TjL3hGjlC9LLeo85IY/view?usp=sharing).
+
 `$pip install python-opencv numpy`
 
 ## Other Languages
 
-other languages packages will come soon you can feel free to check the python package behavior and build your own package using your favorite language
+Other languages are coming soon, feel free to check the python package behavior, and build your own package using your favorite language.
+
